@@ -1,0 +1,39 @@
+.title {
+    text-align: center;
+}
+
+#divider {
+    border-bottom: 5px solid #6565654a;
+    margin: 20px 0;
+    border-style: dashed;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+}
+
+.content {
+    text-indent: 2em;
+    font-size: 20px;
+    position: relative;
+    left: 10px;
+}
+
+.contentImg {
+    top:200px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.subTitle {
+    position: relative;
+    left: 10px;
+    top: 150px;
+    font-size: 25px;
+    font-weight: bold;
+}
+#contentLink {
+    color: rgba(222, 147, 135, 0.813);
+}
+#contentLink:hover {
+    color:coral
+}

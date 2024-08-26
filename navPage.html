@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>导航页</title>
+        <link rel="stylesheet" type="text/css" href="nav.css">
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+            }
+            canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="backgroundCanvas"></canvas>
+        <div class="main">
+            <img src="code-wallpaper.png" id="code-wallpaper">
+            <img src="avatar.jpg" id="avatar">
+            <p id="name">fridgespy</p>
+            <div class="dropdown" style="position: absolute; top: 500px; left: 50px;">
+                <button class="dropbutton">摸鱼宝典</button>
+                <div class="dropdown-content" style="position: absolute; top:40px">
+                    <a href="pycharm.html" target="_blank">pycharm插件</a>
+                    <a href="vscode.html" target="_blank">vscode插件</a>
+                    <a href="syntacticSugar.html" target="_blank">python语法糖</a>
+                </div>
+            </div>
+            <div class="dropdown" style="position: absolute; top: 500px; left: 300px;">
+                <button class="dropbutton">随便写点</button>
+                <div class="dropdown-content" style="position: absolute; top:40px">
+                    <a href="python.html" target="_blank">python程序</a>
+                    <a href="frontEnd.html" target="_blank">前端开发</a>
+                    <a href="cpp.html" target="_blank">C++程序</a>
+                </div>
+            </div>
+            <div class="dropdown" style="position: absolute; top: 600px; left: 175px;">
+                <button class="dropbutton">关于自己</button>
+                <div class="dropdown-content" style="position: absolute; top:40px">
+                    <a href="about.html" target="_blank">关于博主</a>
+                </div>
+            </div>
+            <img src="fox2.jpg" id="fox" z-index="3" style="position: absolute; top: 700px; left: 50%; transform: translateX(-50%); width: 100px; height:100px;">
+            <script src="fox.js"></script>
+        </div>
+        <script>
+            const canvas = document.getElementById('backgroundCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const numParticles = 100;
+
+            class Particle {
+                constructor(x, y, radius, color, velocity) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = radius;
+                    this.color = color;
+                    this.velocity = velocity;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.closePath();
+                }
+
+                update() {
+                    this.draw();
+                    this.x += this.velocity.x;
+                    this.y += this.velocity.y;
+
+                    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                        this.velocity.x = -this.velocity.x;
+                    }
+                    if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                        this.velocity.y = -this.velocity.y;
+                    }
+                }
+            }
+
+            function init() {
+                for (let i = 0; i < numParticles; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height;
+                    const radius = Math.random() * 3 + 1;
+                    const color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.5})`;
+                    const velocity = {
+                        x: (Math.random() - 0.5) * 2,
+                        y: (Math.random() - 0.5) * 2
+                    };
+                    particles.push(new Particle(x, y, radius, color, velocity));
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => particle.update());
+                requestAnimationFrame(animate);
+            }
+
+            init();
+            animate();
+        </script>
+    </body>
+</html>

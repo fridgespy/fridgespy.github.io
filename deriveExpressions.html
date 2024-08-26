@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>推导表达式</title>
+        <link rel="stylesheet" href="nav.css">
+        <link rel="stylesheet" href="contentPage.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+    <body>
+        <div class="main" style="height:1200px">
+            <h1 class="title">推导表达式</h1>
+            <div id="divider"></div>
+            <p class="content">推导式又称解析器，使用它可以帮助我们快速简单 地对一个数据容器中的所有元素进行筛选或其它操作。 下面我将用列表推导式来进行简单的举例。</p>
+            <p class="content">假设我们已经定义了一个元素均为数字的列表：list_a</p>
+            <p class="content">使用推导式输出一个list_b，其中的元素是列表a中元素的平方：</p>
+            <pre><code class="python">
+                list_b = [x**2 for x in list_a]
+            </code></pre>
+            <p class="content">使用推导式输出一个list_c，其中的元素是列表a中 所有大于十的元素：</p>
+            <pre><code class="python">
+                list_c = [x for x in list_a if x > 10]
+            </code></pre>
+            <p class="content">条件语句和对元素的操作可以同时使用，例如，以 下操作是输出一个list_bc，这个列表中的元素是列表a中所有大于10的元素的平方：</p>
+            <pre><code class="python">
+                list_bc = [x**2 for x in list_a if x > 10]
+            </code></pre>
+            <p class="content">推导表达式和for循环一样，也可以嵌套使用，例如我们可以输出一个list_d，其中的元素均为在一定范围内的点坐标：</p>
+            <pre><code class="python">
+                list_d = [(x, y) for x in range(5, 10) for y in range(2, 10)]
+            </code></pre>
+            <p class="content">其他类型的推到表达式与列表推导式类似，不过元 组推导表达式是把方 括号改为圆括号，字典和集合是把方括号改为花括号，而且字典是对整个键值对进行操作，其它没有什么区别。</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>匿名函数</title>
+        <link rel="stylesheet" href="nav.css">
+        <link rel="stylesheet" href="contentPage.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+    <body>
+        <div class="main">
+            <h1 class="title">匿名函数</h1>
+            <div id="divider"></div>
+            <p class="content">lambda 函数是匿名的，它们没有函数名称，只能 通过赋值给变量或作为参数传递给其他函数来使用。</p>
+            <p class="content">lambdas 主要用于创建小型的、一次使用的函数，它们可以简化代码，提高可读性。</p>
+            <p class="content">lambda 函数的语法如下：</p>
+            <pre><code class="language-python">lambda arguments: expression</code></pre>
+            <p class="content">lambda 函数的语法与普通函数的语法非常相似， 只是没有函数名，而是使用了关键字 lambda 来定义。</p>
+            <p class="content">arguments 是 lambda 函数的参数，可以有多个参数，也可以为空，用逗号分隔。</p>
+            <p class="content">expression 是 lambda 函数的表达式，可以写入任何语句</p>
+            <p class="content">下面是一个简单的 lambda 函数的例子：</p>
+            <pre><code class="python">
+                add = lambda x, y: x + y
+                print(add(2, 3)) # 将会输出5
+            </code></pre>
+            <p class="content">匿名函数让定义较为简单的函数的表达更为简洁， 而且有助于函数式编程的思想。</p>
+        </div>
+    </body>
+</html>

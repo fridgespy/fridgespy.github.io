@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>requests爬虫</title>
+        <link rel="stylesheet" href="nav.css">
+        <link rel="stylesheet" href="contentPage.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+    <body>
+        <div class="main">
+            <h1 class="title">requests爬虫</h1>
+            <div id="divider"></div>
+            <p class="content">最近我有一个任务，我需要爬取一个网站的一些信息，但是并不是需要那个主页面的内容，而是需要每一 个子页面的内容，而且还要不断切换到下一 面去爬取下一面的内容。这样的任务，当然得用selenium了。</p>
+            <p class="content">但是，我的新电脑不知道出了什么问题，明明安装 了selenium，但是运行时还是会报错，在互联网上询问了一番无果后，我决定用requests来实现这个任务。</p>
+            <p class="content">思考一番之后，想到了解决方法，下一页和子页面 能点开，不都是通过超链接实现的么，既然有超链接， 那么我就能从爬取的全部内容中，把下一页和子页面的 链接提取出来，然后再重新对这些链接发送请求，再爬 取内容即可。</p>
+            <p class="content">下面放一个我用来获取子页面链接的函数作为参考：</p>
+            <pre><code class="python">
+                def get_sub_urls(url):
+                response = requests.get(url)
+                soup = BeautifulSoup(response.text, 'html.parser')
+                links = soup.find_all('a', class_="sub_urls_class")# 这里输入子页面的类名用于识别出所有的子页面链接
+                sub_urls = [link.get("href") for link in links]
+                return sub_urls
+            </code></pre>
+            <p class="content">使用这个函数能获取所有子页面的链接，然后用for循环遍历并一一请求然后爬取就行了。</p>
+            <p class="content">需要注意的是，这种方法有时得到的链接时是相对 路径，需要我们手动把它改为绝对路径才能访问，修改 也很简单，把域名添加在相对路径前即可。</p>
+        </div>
+    </body>
+</html>
